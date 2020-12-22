@@ -29,7 +29,7 @@ python main_finetune.py --train --restart --config_path=<path to .cfg> --model_p
 
 _ASR pre-training:_ **Note:** the experiment folders in this repo already have a pre-trained LibriSpeech model that you can use. LibriSpeech is pretty big (>100 GB uncompressed), so don't do this part unless you want to re-run the pre-training part with different hyperparameters. If you want to do this, you will first need to download our LibriSpeech alignments [here](https://zenodo.org/record/2619474#.XKDP2VNKg1g), put them in a folder called "text", and put the LibriSpeech audio in a folder called "audio". To pre-train the model on LibriSpeech, run the following command:
 ```
-python main.py --pretrain --config_path=<path to .cfg>
+python main_pretrain.py --pretrain --config_path=<path to .cfg>
 ```
 
 ## Inference
