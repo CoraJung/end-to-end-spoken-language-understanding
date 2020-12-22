@@ -38,7 +38,7 @@ You can perform inference with a trained SLU model by running inference.py:
 python inference.py
 ```
 
-```
+
 The ```test.wav``` file included with this repo has a recording of Loren saying "Hey computer, could you turn the lights on in the kitchen please?", and so the inferred intent should be ```{"activate", "lights", "kitchen"}```.
 
 ## Citation
