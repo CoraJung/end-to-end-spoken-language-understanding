@@ -24,8 +24,8 @@ We are using the pre-trained model_state.pth to fine-tune. Run the following com
 ```
 python main_finetune.py --train --restart --config_path=<path to .cfg> --model_path=<path to .pth>
 ```
-**model_path** should point to the saved model_state.pth. We need to give path upto ```experiments/unfreeze_word_pretrain/training/```
-**config_path** should point to the config file that contains information about the fine-tuning model (in this example, ```experiments/unfreeze_word_finetune.cfg``` would serve the job. Don't forget to change the ```asr_path``` and/or ```slu_path```)
+- **model_path** should point to the saved model_state.pth. We need to give path upto ```experiments/unfreeze_word_pretrain/training/```
+- **config_path** should point to the config file that contains information about the fine-tuning model (in this example, ```experiments/unfreeze_word_finetune.cfg``` would serve the job. Don't forget to change the ```asr_path``` and/or ```slu_path```)
 
 _ASR pre-training:_ **Note:** the experiment folders in this repo already have a pre-trained LibriSpeech model that you can use. LibriSpeech is pretty big (>100 GB uncompressed), so don't do this part unless you want to re-run the pre-training part with different hyperparameters. If you want to do this, you will first need to download our LibriSpeech alignments [here](https://zenodo.org/record/2619474#.XKDP2VNKg1g), put them in a folder called "text", and put the LibriSpeech audio in a folder called "audio". To pre-train the model on LibriSpeech, run the following command:
 ```
