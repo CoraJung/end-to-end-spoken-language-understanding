@@ -10,12 +10,22 @@ If you have any questions about this code or have problems getting it to work, p
 PyTorch, torchaudio, numpy, soundfile, pandas, tqdm, textgrid.py
 
 ## Pre-Training
-First, change the ```asr_path``` and/or ```slu_path``` in the config file (like ```experiments/no_unfreezing.cfg```, or whichever experiment you want to run) to point to where the LibriSpeech data and/or Fluent Speech Commands data are stored on your computer.
+First, change the ```asr_path``` and/or ```slu_path``` in the config file (like ```experiments/unfreeze_word_pretrain.cfg```, or whichever experiment you want to run) to point to where the LibriSpeech data and/or Fluent Speech Commands data are stored on your computer.
 
 _SLU training:_ To train the model on an SLU dataset, run the following command:
 ```
-python main_pretrain.py --train --config_path=<path to .cfg>
+python main_pretrain.py --train --config_path=<config path>
 ```
+Now the best model_state.pth should be saved in ```experiments/unfreeze_word_pretrain/training/model_state.pth```
+
+## Fine-Tuning
+We are using the pre-trained model_state.pth to fine-tune. Run the following command after changing the ```asr_path``` and/or ```slu_path``` in the config file (like ```experiments/unfreeze_word_finetune.cfg```, or whichever experiment you want to run) to point to where speech data for fine-tuning are stored in your computer.
+
+```
+python main_finetune.py --train --restart --config_path=<path to .cfg> --model_path=<path to .pth>
+```
+**model path** should point to the saved model_state.pth. We need to give path upto ``experiments/unfreeze_word_pretrain/training/```
+**config path** should point to the config file that contains information about the fine-tuning model (in this example, ```experiments/unfreeze_word_finetune.cfg``` would serve the job. Don't forget to change the ```asr_path``` and/or ```slu_path```)
 
 _ASR pre-training:_ **Note:** the experiment folders in this repo already have a pre-trained LibriSpeech model that you can use. LibriSpeech is pretty big (>100 GB uncompressed), so don't do this part unless you want to re-run the pre-training part with different hyperparameters. If you want to do this, you will first need to download our LibriSpeech alignments [here](https://zenodo.org/record/2619474#.XKDP2VNKg1g), put them in a folder called "text", and put the LibriSpeech audio in a folder called "audio". To pre-train the model on LibriSpeech, run the following command:
 ```
